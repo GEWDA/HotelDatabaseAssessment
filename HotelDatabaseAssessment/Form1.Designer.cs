@@ -37,6 +37,8 @@
             this.btnReturnMovie = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnAddMovie = new System.Windows.Forms.Button();
+            this.btnAddCustomer = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageDG.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -134,11 +136,33 @@
             this.label2.Text = "Overview";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
+            // btnAddMovie
+            // 
+            this.btnAddMovie.Location = new System.Drawing.Point(235, 296);
+            this.btnAddMovie.Name = "btnAddMovie";
+            this.btnAddMovie.Size = new System.Drawing.Size(102, 23);
+            this.btnAddMovie.TabIndex = 3;
+            this.btnAddMovie.Text = "Add New Movie";
+            this.btnAddMovie.UseVisualStyleBackColor = true;
+            this.btnAddMovie.Click += new System.EventHandler(this.btnAddMovie_Click);
+            // 
+            // btnAddCustomer
+            // 
+            this.btnAddCustomer.Location = new System.Drawing.Point(343, 296);
+            this.btnAddCustomer.Name = "btnAddCustomer";
+            this.btnAddCustomer.Size = new System.Drawing.Size(135, 23);
+            this.btnAddCustomer.TabIndex = 4;
+            this.btnAddCustomer.Text = "Add New Customer";
+            this.btnAddCustomer.UseVisualStyleBackColor = true;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 444);
+            this.Controls.Add(this.btnAddCustomer);
+            this.Controls.Add(this.btnAddMovie);
             this.Controls.Add(this.btnReturnMovie);
             this.Controls.Add(this.btnRentMovie);
             this.Controls.Add(this.tabControl1);
@@ -163,6 +187,8 @@
         private System.Windows.Forms.Button btnReturnMovie;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnAddMovie;
+        private System.Windows.Forms.Button btnAddCustomer;
     }
 }
 
