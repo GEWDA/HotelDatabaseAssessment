@@ -64,6 +64,12 @@
     <Compile Include="FormNewMovie.Designer.cs">
       <DependentUpon>FormNewMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRentMovie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRentMovie.Designer.cs">
+      <DependentUpon>FormRentMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewMovie.resx">
       <DependentUpon>FormNewMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRentMovie.resx">
+      <DependentUpon>FormRentMovie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

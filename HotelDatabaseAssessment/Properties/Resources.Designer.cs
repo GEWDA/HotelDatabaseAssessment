@@ -61,7 +61,7 @@ namespace HotelDatabaseAssessment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customer Added Successfully.
+        ///   Looks up a localized string similar to Customer Added/Updated Successfully.
         /// </summary>
         internal static string Customer_Added_Successfully {
             get {
@@ -88,7 +88,7 @@ namespace HotelDatabaseAssessment.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Movie Added Successfully.
+        ///   Looks up a localized string similar to Movie Added/Updated Successfully.
         /// </summary>
         internal static string Movie_Added_Successfully {
             get {
