@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HotelDatabaseAssessment.Properties;
 
 namespace HotelDatabaseAssessment
 {
@@ -42,23 +43,38 @@ namespace HotelDatabaseAssessment
         {
             using (SqlCommand addRecord = new SqlCommand(DBCalls.AddRecordRented, Connection))
             {
-                addRecord.Parameters.AddWithValue("@MovieID", SenderData[0]);
-                addRecord.Parameters.AddWithValue("@CustID", _selectedCustomer[0]);
-                addRecord.Parameters.AddWithValue("@DateRented", DateTime.Now.ToString());
+                try
+                {
+                    addRecord.Parameters.AddWithValue("@MovieID", SenderData[0]);
+                    addRecord.Parameters.AddWithValue("@CustID", _selectedCustomer[0]);
+                    addRecord.Parameters.AddWithValue("@DateRented", DateTime.Now.ToString());
 
-                Connection.Open();
-                addRecord.ExecuteNonQuery();
-                Connection.Close();
-                Hide();
-                MessageBox.Show(_selectedCustomer[1]+" "+_selectedCustomer[2]+" has successfully rented the movie "+SenderData[3]);
-                Close();
+                    Connection.Open();
+                    addRecord.ExecuteNonQuery();
+                    Connection.Close();
+                    Hide();
+                    MessageBox.Show(_selectedCustomer[1]+" "+_selectedCustomer[2]+" has successfully rented the movie "+SenderData[3]);
+                    Close();
+                }
+                catch
+                {
+                    try
+                    {
+                        Connection.Close();
+                    }
+                    catch
+                    {
+                        
+                    }
+                    MessageBox.Show(Resources.Please_Select_A_Record);
+                }
             }
         }
 
         private void DG_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView theDG = (DataGridView) sender;
-            if(e.RowIndex!=-1)//required to prevent crash when sorting table by something (e.g. last name)
+            if(e.RowIndex!=-1)//required to prevent crash when sorting table by a column (e.g. last name)
             {
                 _selectedCustomer[0] = theDG.Rows[e.RowIndex].Cells[0].Value.ToString();
                 _selectedCustomer[1] = theDG.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -69,6 +85,7 @@ namespace HotelDatabaseAssessment
         //METHODS
         private DataTable LoadCustomers()
         {
+
             CustomerTable.Clear();
             if (!CustomerTable.Columns.Contains("CustID"))
             {

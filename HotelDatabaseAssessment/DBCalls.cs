@@ -19,7 +19,7 @@ namespace HotelDatabaseAssessment
         public static string UpdateMovies { get; set; }
             = @"UPDATE Movies set Rating=@Rating, Title=@Title, Year=@Year, Rental_Cost=@Rental_Cost, Copies=@Copies, Plot=@Plot, Genre=@Genre where MovieID=@MovieID";
         public static string UpdateRented { get; set; }
-            = @"UPDATE RentedMovies set MovieIDFK=@MovieIDFK, CustIDFK=@CustIDFK, DateRented=@DateRented, DateReturned=@DateReturned where RMID=@RMID";
+            = @"UPDATE RentedMovies set DateReturned=@DateReturned where RMID=@RMID";//MovieIDFK=@MovieIDFK, CustIDFK=@CustIDFK, DateRented=@DateRented, 
 
 
         public static string LoadCustomerDG { get; set; }

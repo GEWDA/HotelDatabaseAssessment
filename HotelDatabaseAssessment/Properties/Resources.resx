@@ -129,4 +129,10 @@
   <data name="Movie_missing_field_part_two" xml:space="preserve">
     <value> and numerical fields only contain numerical values</value>
   </data>
+  <data name="Movie_Returned_Successfully" xml:space="preserve">
+    <value>Movie Returned Successfully</value>
+  </data>
+  <data name="Please_Select_A_Record" xml:space="preserve">
+    <value>Please Select A Record</value>
+  </data>
 </root>

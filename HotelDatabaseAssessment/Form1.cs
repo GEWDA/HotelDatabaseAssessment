@@ -34,6 +34,7 @@ namespace HotelDatabaseAssessment
         DataTable MoviesTable = new DataTable();
         DataTable RentedMoviesTable = new DataTable();
         DataTable Unreturned = new DataTable();
+        private string UnreturnedRecordID;
 
 
         //EVENTS
@@ -82,7 +83,12 @@ namespace HotelDatabaseAssessment
                     txtCopies.Text = theDG.Rows[e.RowIndex].Cells[5].Value.ToString();
                     txtPlot.Text = theDG.Rows[e.RowIndex].Cells[6].Value.ToString();
                     txtGenre.Text = theDG.Rows[e.RowIndex].Cells[7].Value.ToString();
-                }                
+                }
+                else if (sender == DGUnreturned)
+                {
+                    UnreturnedRecordID = theDG.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+                }
             }
             catch
             {
@@ -140,14 +146,33 @@ namespace HotelDatabaseAssessment
 
             }
         }
+        private void btnReturnMovie_Click(object sender, EventArgs e)
+        {
+            using (SqlCommand update = new SqlCommand(DBCalls.UpdateRented, Connection))
+            {
+                try
+                {
+                    update.Parameters.AddWithValue("@RMID", UnreturnedRecordID);
+                    update.Parameters.AddWithValue("@DateReturned", DateTime.Now.ToString());
+                    Connection.Open();
+                    update.ExecuteNonQuery();
+                    Connection.Close();
+                    MessageBox.Show(Resources.Movie_Returned_Successfully);
+                }
+                catch
+                {
+                    MessageBox.Show(Resources.Please_Select_A_Record);
+                }
+            }
+        }
 
         private void btnRentMovie_Click(object sender, EventArgs e)
         {
             FormRentMovie rentMovie = new FormRentMovie(GetMovieInfo());
             rentMovie.ShowDialog();
         }
-        //METHODS
 
+        //METHODS
 
         public DataTable[] LoadAllDG()
         {
@@ -291,5 +316,6 @@ namespace HotelDatabaseAssessment
                 return Unreturned;
             }
         }
+
     }
 }

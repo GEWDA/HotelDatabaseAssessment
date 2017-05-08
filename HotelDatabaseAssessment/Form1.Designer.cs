@@ -539,6 +539,7 @@
             this.btnReturnMovie.TabIndex = 2;
             this.btnReturnMovie.Text = "Return Selected Movie";
             this.btnReturnMovie.UseVisualStyleBackColor = true;
+            this.btnReturnMovie.Click += new System.EventHandler(this.btnReturnMovie_Click);
             // 
             // Form1
             // 

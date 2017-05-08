@@ -104,5 +104,23 @@ namespace HotelDatabaseAssessment.Properties {
                 return ResourceManager.GetString("Movie_missing_field_part_two", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie Returned Successfully.
+        /// </summary>
+        internal static string Movie_Returned_Successfully {
+            get {
+                return ResourceManager.GetString("Movie_Returned_Successfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select A Record.
+        /// </summary>
+        internal static string Please_Select_A_Record {
+            get {
+                return ResourceManager.GetString("Please_Select_A_Record", resourceCulture);
+            }
+        }
     }
 }
