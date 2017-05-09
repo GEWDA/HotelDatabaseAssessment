@@ -35,6 +35,7 @@ namespace HotelDatabaseAssessment
         DataTable RentedMoviesTable = new DataTable();
         DataTable Unreturned = new DataTable();
         private string UnreturnedRecordID;
+        private int highestMovieID;
 
 
         //EVENTS
@@ -169,8 +170,8 @@ namespace HotelDatabaseAssessment
             }
         }
 
-        private void btnDeleteCustomer_Click(object sender, EventArgs e)
-        {
+        private void btnDeleteCustomer_Click(object sender, EventArgs e)//note that these delete queries do not actually delete data in the database,
+        {                                                               //they merely make the data no longer appear in the program
             using (SqlCommand delete = new SqlCommand(DBCalls.DeleteRecordCustomer, Connection))
             {
                 try
@@ -351,5 +352,30 @@ namespace HotelDatabaseAssessment
             }
         }
 
+        private void btnUpdateFees_Click(object sender, EventArgs e)
+        {
+            DGMovies.DataSource = LoadMovies();//forces the data back into ordering by ID
+            highestMovieID = Convert.ToInt16(DGMovies.Rows[DGMovies.RowCount-1].Cells[0].Value);//requires the data to be sorted by ID in order to get the largest
+
+            for (int i = 0; i < highestMovieID; i++)//sets the ID of the last record as the upper limit of i
+            {
+                using (SqlCommand update = new SqlCommand(DBCalls.UpdateMoviesRentalCost, Connection))
+                {
+                    //try
+                    //{
+                        update.Parameters.AddWithValue("@MovieID", i);//(below line) if today is at least 5 years from the year the movie came out, it is only $2 to rent
+                        update.Parameters.AddWithValue("@Rental_Cost", DateTime.Today.Year - Convert.ToDateTime(@"01/01/"+DGMovies.Rows[i].Cells[3].Value.ToString()).Year >= 5? 2.00 : 5.00);
+                        Connection.Open();
+                        update.ExecuteNonQuery();
+                        Connection.Close();
+                    //}
+                    //catch
+                    //{
+                    //    MessageBox.Show("It's broken :(");//should never happen
+                    //}
+                }
+            }
+            
+        }
     }
 }

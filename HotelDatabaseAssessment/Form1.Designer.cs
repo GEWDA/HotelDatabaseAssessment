@@ -75,6 +75,7 @@
             this.btnReturnMovie = new System.Windows.Forms.Button();
             this.btnDeleteCustomer = new System.Windows.Forms.Button();
             this.btnDeleteMovie = new System.Windows.Forms.Button();
+            this.btnUpdateFees = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGCustomer)).BeginInit();
@@ -255,6 +256,7 @@
             // 
             // tabPageMovies
             // 
+            this.tabPageMovies.Controls.Add(this.btnUpdateFees);
             this.tabPageMovies.Controls.Add(this.btnDeleteMovie);
             this.tabPageMovies.Controls.Add(this.btnUpdateMovie);
             this.tabPageMovies.Controls.Add(this.txtGenre);
@@ -565,6 +567,16 @@
             this.btnDeleteMovie.UseVisualStyleBackColor = true;
             this.btnDeleteMovie.Click += new System.EventHandler(this.btnDeleteMovie_Click);
             // 
+            // btnUpdateFees
+            // 
+            this.btnUpdateFees.Location = new System.Drawing.Point(394, 348);
+            this.btnUpdateFees.Name = "btnUpdateFees";
+            this.btnUpdateFees.Size = new System.Drawing.Size(103, 23);
+            this.btnUpdateFees.TabIndex = 2;
+            this.btnUpdateFees.Text = "Update Rent Fees";
+            this.btnUpdateFees.UseVisualStyleBackColor = true;
+            this.btnUpdateFees.Click += new System.EventHandler(this.btnUpdateFees_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -638,6 +650,7 @@
         private System.Windows.Forms.Label lblGenre;
         private System.Windows.Forms.Button btnDeleteCustomer;
         private System.Windows.Forms.Button btnDeleteMovie;
+        private System.Windows.Forms.Button btnUpdateFees;
     }
 }
 

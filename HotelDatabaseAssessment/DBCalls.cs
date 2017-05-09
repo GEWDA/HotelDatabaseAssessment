@@ -15,11 +15,13 @@ namespace HotelDatabaseAssessment
             = @"Data Source=LAPTOP-OUSE04QM\SQLEXPRESS;Initial Catalog=VBMoviesFullData;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public static string UpdateCustomers { get; set; }
-            = @"UPDATE Customer set FirstName=@FirstName, LastName=@LastName, Address=@Address, Phone=@Phone where CustID=@CustID";
+            = @"UPDATE Customer SET FirstName=@FirstName, LastName=@LastName, Address=@Address, Phone=@Phone WHERE CustID=@CustID";
         public static string UpdateMovies { get; set; }
-            = @"UPDATE Movies set Rating=@Rating, Title=@Title, Year=@Year, Rental_Cost=@Rental_Cost, Copies=@Copies, Plot=@Plot, Genre=@Genre where MovieID=@MovieID";
+            = @"UPDATE Movies SET Rating=@Rating, Title=@Title, Year=@Year, Rental_Cost=@Rental_Cost, Copies=@Copies, Plot=@Plot, Genre=@Genre WHERE MovieID=@MovieID";
+        public static string UpdateMoviesRentalCost { get; set; }
+            = @"UPDATE Movies SET Rental_Cost=@Rental_Cost WHERE MovieID=@MovieID";
         public static string UpdateRented { get; set; }
-            = @"UPDATE RentedMovies set DateReturned=@DateReturned where RMID=@RMID";//MovieIDFK=@MovieIDFK, CustIDFK=@CustIDFK, DateRented=@DateRented, 
+            = @"UPDATE RentedMovies SET DateReturned=@DateReturned WHERE RMID=@RMID";
 
 
         public static string LoadCustomerDG { get; set; }
@@ -33,16 +35,16 @@ namespace HotelDatabaseAssessment
             = @"SELECT * FROM CustomerAndMoviesRented WHERE DateReturned IS NULL";
 
         public static string AddRecordCustomer { get; set; }
-            = "INSERT INTO Customer (FirstName, LastName, Address, Phone) VALUES ( @FirstName, @LastName, @Address, @Phone)";
+            = @"INSERT INTO Customer (FirstName, LastName, Address, Phone) VALUES ( @FirstName, @LastName, @Address, @Phone)";
         public static string AddRecordMovie { get; set; }
-            = "INSERT INTO Movies (Rating, Title, Year, Rental_Cost, Plot, Genre) VALUES ( @Rating, @Title, @Year, @Rental_Cost, @Plot, @Genre)";
+            = @"INSERT INTO Movies (Rating, Title, Year, Rental_Cost, Plot, Genre) VALUES ( @Rating, @Title, @Year, @Rental_Cost, @Plot, @Genre)";
 
         public static string AddRecordRented { get; set; }
-            = "INSERT INTO RentedMovies (MovieIDFK, CustIDFK, DateRented) VALUES (@MovieID, @CustID, @DateRented)";//note that the FK variants have the actual ID values
+            = @"INSERT INTO RentedMovies (MovieIDFK, CustIDFK, DateRented) VALUES (@MovieID, @CustID, @DateRented)";//note that the FK variants have the actual ID values
 
         public static string DeleteRecordCustomer { get; set; }//todo:these
-            = "UPDATE Customer set IsDeleted=1 WHERE CustID=@CustID";
+            = @"UPDATE Customer SET IsDeleted=1 WHERE CustID=@CustID";
         public static string DeleteRecordMovie { get; set; }
-            = "UPDATE Movies set IsDeleted=1 WHERE MovieID=@MovieID";
+            = @"UPDATE Movies SET IsDeleted=1 WHERE MovieID=@MovieID";
     }
 }
