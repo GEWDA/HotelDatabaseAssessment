@@ -23,9 +23,9 @@ namespace HotelDatabaseAssessment
 
 
         public static string LoadCustomerDG { get; set; }
-            = @"SELECT * FROM Customer ORDER by CustID";
+            = @"SELECT CustID,FirstName,LastName,Address,Phone FROM Customer WHERE (IsDeleted=0) ORDER by CustID";
         public static string LoadMoviesDG { get; set; }
-            = @"SELECT * FROM Movies ORDER by MovieID";
+            = @"SELECT MovieID,Rating,Title,Year,Rental_Cost,Copies,Plot,Genre FROM Movies WHERE (IsDeleted=0) ORDER by MovieID";
         public static string LoadRentedMoviesDG { get; set; }
             = @"SELECT * FROM CustomerAndMoviesRented ORDER by RMID";
 
@@ -41,8 +41,8 @@ namespace HotelDatabaseAssessment
             = "INSERT INTO RentedMovies (MovieIDFK, CustIDFK, DateRented) VALUES (@MovieID, @CustID, @DateRented)";//note that the FK variants have the actual ID values
 
         public static string DeleteRecordCustomer { get; set; }//todo:these
-            = "DELETE Customer WHERE CustID=@CustID";
+            = "UPDATE Customer set IsDeleted=1 WHERE CustID=@CustID";
         public static string DeleteRecordMovie { get; set; }
-            = "DELETE Movies WHERE MovieID=@MovieID";
+            = "UPDATE Movies set IsDeleted=1 WHERE MovieID=@MovieID";
     }
 }

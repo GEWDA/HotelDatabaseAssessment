@@ -53,7 +53,7 @@ namespace HotelDatabaseAssessment
                     addRecord.ExecuteNonQuery();
                     Connection.Close();
                     Hide();
-                    MessageBox.Show(_selectedCustomer[1]+" "+_selectedCustomer[2]+" has successfully rented the movie "+SenderData[3]);
+                    MessageBox.Show(_selectedCustomer[1]+" "+_selectedCustomer[2]+" has successfully rented the movie "+SenderData[2]);
                     Close();
                 }
                 catch

@@ -70,6 +70,15 @@ namespace HotelDatabaseAssessment.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer Deleted Successfully.
+        /// </summary>
+        internal static string Customer_Deleted_Successfully {
+            get {
+                return ResourceManager.GetString("Customer_Deleted_Successfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to and that the phone field only contains numbers.
         /// </summary>
         internal static string Customer_missing_field_part_two {
@@ -93,6 +102,15 @@ namespace HotelDatabaseAssessment.Properties {
         internal static string Movie_Added_Successfully {
             get {
                 return ResourceManager.GetString("Movie_Added_Successfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Movie Deleted Successfully.
+        /// </summary>
+        internal static string Movie_Deleted_Successfully {
+            get {
+                return ResourceManager.GetString("Movie_Deleted_Successfully", resourceCulture);
             }
         }
         

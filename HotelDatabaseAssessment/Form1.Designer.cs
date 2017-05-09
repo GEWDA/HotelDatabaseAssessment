@@ -73,6 +73,8 @@
             this.DGUnreturned = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.btnReturnMovie = new System.Windows.Forms.Button();
+            this.btnDeleteCustomer = new System.Windows.Forms.Button();
+            this.btnDeleteMovie = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGCustomer)).BeginInit();
@@ -98,6 +100,7 @@
             // 
             // tabPageCustomer
             // 
+            this.tabPageCustomer.Controls.Add(this.btnDeleteCustomer);
             this.tabPageCustomer.Controls.Add(this.btnUpdateCustomer);
             this.tabPageCustomer.Controls.Add(this.lblPhone);
             this.tabPageCustomer.Controls.Add(this.txtPhone);
@@ -252,6 +255,7 @@
             // 
             // tabPageMovies
             // 
+            this.tabPageMovies.Controls.Add(this.btnDeleteMovie);
             this.tabPageMovies.Controls.Add(this.btnUpdateMovie);
             this.tabPageMovies.Controls.Add(this.txtGenre);
             this.tabPageMovies.Controls.Add(this.lblGenre);
@@ -541,6 +545,26 @@
             this.btnReturnMovie.UseVisualStyleBackColor = true;
             this.btnReturnMovie.Click += new System.EventHandler(this.btnReturnMovie_Click);
             // 
+            // btnDeleteCustomer
+            // 
+            this.btnDeleteCustomer.Location = new System.Drawing.Point(149, 348);
+            this.btnDeleteCustomer.Name = "btnDeleteCustomer";
+            this.btnDeleteCustomer.Size = new System.Drawing.Size(158, 23);
+            this.btnDeleteCustomer.TabIndex = 16;
+            this.btnDeleteCustomer.Text = "Delete Selected Customer";
+            this.btnDeleteCustomer.UseVisualStyleBackColor = true;
+            this.btnDeleteCustomer.Click += new System.EventHandler(this.btnDeleteCustomer_Click);
+            // 
+            // btnDeleteMovie
+            // 
+            this.btnDeleteMovie.Location = new System.Drawing.Point(254, 348);
+            this.btnDeleteMovie.Name = "btnDeleteMovie";
+            this.btnDeleteMovie.Size = new System.Drawing.Size(134, 23);
+            this.btnDeleteMovie.TabIndex = 31;
+            this.btnDeleteMovie.Text = "Delete Selected Movie";
+            this.btnDeleteMovie.UseVisualStyleBackColor = true;
+            this.btnDeleteMovie.Click += new System.EventHandler(this.btnDeleteMovie_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -612,6 +636,8 @@
         private System.Windows.Forms.Button btnUpdateMovie;
         private System.Windows.Forms.TextBox txtGenre;
         private System.Windows.Forms.Label lblGenre;
+        private System.Windows.Forms.Button btnDeleteCustomer;
+        private System.Windows.Forms.Button btnDeleteMovie;
     }
 }
 

@@ -135,4 +135,10 @@
   <data name="Please_Select_A_Record" xml:space="preserve">
     <value>Please Select A Record</value>
   </data>
+  <data name="Movie_Deleted_Successfully" xml:space="preserve">
+    <value>Movie Deleted Successfully</value>
+  </data>
+  <data name="Customer_Deleted_Successfully" xml:space="preserve">
+    <value>Customer Deleted Successfully</value>
+  </data>
 </root>

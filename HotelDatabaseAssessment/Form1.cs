@@ -38,19 +38,6 @@ namespace HotelDatabaseAssessment
 
 
         //EVENTS
-
-        private void btnAddMovie_Click(object sender, EventArgs e)
-        {
-            AddMovie.ShowDialog();
-        }
-
-        
-
-        private void btnAddCustomer_Click(object sender, EventArgs e)
-        {
-            AddCustomer.ShowDialog();
-        }
-
         private void Form1_Activated(object sender, EventArgs e)
         {
             var DGArray = LoadAllDG();
@@ -95,6 +82,22 @@ namespace HotelDatabaseAssessment
                 
             }
         }
+        private void btnAddMovie_Click(object sender, EventArgs e)
+        {
+            AddMovie.ShowDialog();
+        }
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            AddCustomer.ShowDialog();
+        }
+        private void btnRentMovie_Click(object sender, EventArgs e)
+        {
+            FormRentMovie rentMovie = new FormRentMovie(GetMovieInfo());
+            rentMovie.ShowDialog();
+        }
+
+
+
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
             using (SqlCommand update = new SqlCommand(DBCalls.UpdateCustomers, Connection))
@@ -166,10 +169,41 @@ namespace HotelDatabaseAssessment
             }
         }
 
-        private void btnRentMovie_Click(object sender, EventArgs e)
+        private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
-            FormRentMovie rentMovie = new FormRentMovie(GetMovieInfo());
-            rentMovie.ShowDialog();
+            using (SqlCommand delete = new SqlCommand(DBCalls.DeleteRecordCustomer, Connection))
+            {
+                try
+                {
+                    delete.Parameters.AddWithValue("@CustID", lblCustID.Text);
+                    Connection.Open();
+                    delete.ExecuteNonQuery();
+                    Connection.Close();
+                    MessageBox.Show(Resources.Customer_Deleted_Successfully);
+                }
+                catch
+                {
+                    MessageBox.Show(Resources.Please_Select_A_Record);
+                }
+            }
+        }
+        private void btnDeleteMovie_Click(object sender, EventArgs e)
+        {
+            using (SqlCommand delete = new SqlCommand(DBCalls.DeleteRecordMovie, Connection))
+            {
+                try
+                {
+                    delete.Parameters.AddWithValue("@MovieID", lblMovieID.Text);
+                    Connection.Open();
+                    delete.ExecuteNonQuery();
+                    Connection.Close();
+                    MessageBox.Show(Resources.Movie_Deleted_Successfully);
+                }
+                catch
+                {
+                    MessageBox.Show(Resources.Please_Select_A_Record);
+                }
+            }
         }
 
         //METHODS
@@ -251,7 +285,7 @@ namespace HotelDatabaseAssessment
             }
         }
 
-        private DataTable LoadCustomers()
+        public DataTable LoadCustomers()
         {
             CustomerTable.Clear();
             if(!CustomerTable.Columns.Contains("CustID"))
