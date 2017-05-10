@@ -26,8 +26,8 @@ namespace HotelDatabaseAssessment
             Command.Connection = Connection;
         }
         
-        private SqlCommand Command = new SqlCommand();
-        private SqlConnection Connection = new SqlConnection();
+        public SqlCommand Command = new SqlCommand();//must be public for unit tests
+        public SqlConnection Connection = new SqlConnection();//must be public for unit tests
         public FormNewCustomer AddCustomer = new FormNewCustomer();
         public FormNewMovie AddMovie = new FormNewMovie();
         DataTable CustomerTable=new DataTable();
@@ -286,7 +286,7 @@ namespace HotelDatabaseAssessment
             }
         }
 
-        public DataTable LoadCustomers()
+        public DataTable LoadCustomers()//public for unit test
         {
             CustomerTable.Clear();
             if(!CustomerTable.Columns.Contains("CustID"))
@@ -354,6 +354,7 @@ namespace HotelDatabaseAssessment
 
         private void btnUpdateFees_Click(object sender, EventArgs e)
         {
+            return;//todo:delete this line
             DGMovies.DataSource = LoadMovies();//forces the data back into ordering by ID
             highestMovieID = Convert.ToInt16(DGMovies.Rows[DGMovies.RowCount-1].Cells[0].Value);//requires the data to be sorted by ID in order to get the largest
 

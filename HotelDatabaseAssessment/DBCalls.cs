@@ -9,7 +9,7 @@ namespace HotelDatabaseAssessment
     /// <summary>
     /// Contains all of the static sql commands for this solution
     /// </summary>
-    static class DBCalls
+    public static class DBCalls
     {
         public static string Connection { get; set; }
             = @"Data Source=LAPTOP-OUSE04QM\SQLEXPRESS;Initial Catalog=VBMoviesFullData;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
