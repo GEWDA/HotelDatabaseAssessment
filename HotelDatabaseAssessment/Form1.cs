@@ -359,26 +359,20 @@ namespace HotelDatabaseAssessment
 
         private void btnUpdateFees_Click(object sender, EventArgs e)
         {
-            return;//todo:delete this line
-            DGMovies.DataSource = LoadMovies();//forces the data back into ordering by ID
+            DGMovies.DataSource = LoadMovies();//forces the data back into ordering by ID by reloading the data
             HighestMovieID = Convert.ToInt16(DGMovies.Rows[DGMovies.RowCount-1].Cells[0].Value);//requires the data to be sorted by ID in order to get the largest
 
-            for (int i = 0; i < HighestMovieID; i++)//sets the ID of the last record as the upper limit of i
+            for (int i = 0; i < HighestMovieID; i++)//sets the ID of the last record (that isn't deleted) as the upper limit of i
             {
                 using (SqlCommand update = new SqlCommand(DBCalls.UpdateMoviesRentalCost, Connection))
                 {
-                    //try
-                    //{
-                        update.Parameters.AddWithValue("@MovieID", i);//(below line) if today is at least 5 years from the year the movie came out, it is only $2 to rent
-                        update.Parameters.AddWithValue("@Rental_Cost", DateTime.Today.Year - Convert.ToDateTime(@"01/01/"+DGMovies.Rows[i].Cells[3].Value.ToString()).Year >= 5? 2.00 : 5.00);
-                        Connection.Open();
-                        update.ExecuteNonQuery();
-                        Connection.Close();
-                    //}
-                    //catch
-                    //{
 
-                    //}
+                    update.Parameters.AddWithValue("@MovieID", i);//(below line) if today is at least 5 years from the year the movie came out, it is only $2 to rent
+                    update.Parameters.AddWithValue("@Rental_Cost", DateTime.Today.Year - Convert.ToDateTime(@"01/01/"+DGMovies.Rows[i].Cells[3].Value.ToString()).Year >= 5? 2.00 : 5.00);
+                    Connection.Open();
+                    update.ExecuteNonQuery();
+                    Connection.Close();
+
                 }
             }
             
