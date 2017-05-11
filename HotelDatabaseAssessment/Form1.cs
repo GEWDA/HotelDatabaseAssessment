@@ -373,7 +373,7 @@ namespace HotelDatabaseAssessment
                     update.ExecuteNonQuery();
                     Connection.Close();
 
-                }//this comment is to enable backup commits
+                }
             }
             
         }
