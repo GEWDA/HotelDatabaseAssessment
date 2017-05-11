@@ -25,7 +25,7 @@ namespace HotelDatabaseAssessment
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            double exceptionThrower;
+            double exceptionThrower;//same idea as new customer form
             try
             {
                 exceptionThrower = Convert.ToDouble(txtRental_Cost.Text);
@@ -35,7 +35,7 @@ namespace HotelDatabaseAssessment
             {
                 exceptionThrower = -2;
             }
-            bool filledOut = exceptionThrower > -2;
+            bool filledOut = exceptionThrower > -2;//same idea as new customer form
             foreach (TextBox field in Controls.OfType<TextBox>())
             {
                 filledOut = filledOut && !string.IsNullOrEmpty(field.Text);
@@ -62,7 +62,7 @@ namespace HotelDatabaseAssessment
                 }
                 this.Close();
             }
-            else//else is needed, because the form still exists when it is closed
+            else//if-else is needed, because the form still exists when it is closed
             {
                 MessageBox.Show(Resources.Missing_field+Resources.Movie_missing_field_part_two);
             }

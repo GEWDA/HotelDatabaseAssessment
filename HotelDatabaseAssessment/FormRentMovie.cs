@@ -37,7 +37,7 @@ namespace HotelDatabaseAssessment
         }
         private void FormRentMovie_Activated(object sender, EventArgs e)
         {
-            DGCustomer.DataSource = LoadCustomers();
+            DGCustomer.DataSource = LoadCustomers();//only the Customer DataGrid is needed, so that is all that is loaded
         }
         private void btnRent_Click(object sender, EventArgs e)
         {
@@ -53,14 +53,14 @@ namespace HotelDatabaseAssessment
                     addRecord.ExecuteNonQuery();
                     Connection.Close();
                     Hide();
-                    MessageBox.Show(_selectedCustomer[1]+" "+_selectedCustomer[2]+" has successfully rented the movie "+SenderData[2]);
+                    MessageBox.Show(_selectedCustomer[1]+" "+_selectedCustomer[2]+" has successfully rented the movie: "+SenderData[2]);
                     Close();
                 }
                 catch
                 {
                     try
                     {
-                        Connection.Close();
+                        Connection.Close();//in case connection is still open
                     }
                     catch
                     {
@@ -76,9 +76,9 @@ namespace HotelDatabaseAssessment
             DataGridView theDG = (DataGridView) sender;
             if(e.RowIndex!=-1)//required to prevent crash when sorting table by a column (e.g. last name)
             {
-                _selectedCustomer[0] = theDG.Rows[e.RowIndex].Cells[0].Value.ToString();
-                _selectedCustomer[1] = theDG.Rows[e.RowIndex].Cells[1].Value.ToString();
-                _selectedCustomer[2] = theDG.Rows[e.RowIndex].Cells[2].Value.ToString();
+                _selectedCustomer[0] = theDG.Rows[e.RowIndex].Cells[0].Value.ToString();//required for adding record
+                _selectedCustomer[1] = theDG.Rows[e.RowIndex].Cells[1].Value.ToString();//only used for confirmation message
+                _selectedCustomer[2] = theDG.Rows[e.RowIndex].Cells[2].Value.ToString();//only used for confirmation message
             }
         }
 

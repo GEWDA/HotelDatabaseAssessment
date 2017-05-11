@@ -30,6 +30,8 @@ namespace HotelDatabaseAssessment.Tests
         [TestMethod()]
         public void TestDBConnectionStringConnection()
         {
+            var expected = DBCalls.Connection;
+            var actual = myForm.Connection.ConnectionString;
             try
             {
                 myForm.Connection.Open();
@@ -37,9 +39,9 @@ namespace HotelDatabaseAssessment.Tests
             }
             catch 
             {
-                Assert.Fail();
+                Assert.Fail();//Occurs if the connection fails
             }
-            Assert.AreEqual(myForm.Connection.ConnectionString, DBCalls.Connection);
+            Assert.AreEqual(actual, expected);//Tests if the connection string was set from the DBCalls class
         }
     }
 }

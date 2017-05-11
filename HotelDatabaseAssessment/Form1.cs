@@ -34,11 +34,16 @@ namespace HotelDatabaseAssessment
         DataTable MoviesTable = new DataTable();
         DataTable RentedMoviesTable = new DataTable();
         DataTable Unreturned = new DataTable();
-        private string UnreturnedRecordID;
-        private int highestMovieID;
+        private string UnreturnedRecordID { get; set; }
+        private int HighestMovieID { get; set; }
 
 
         //EVENTS
+        /// <summary>
+        /// reloads all DataGrids
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Activated(object sender, EventArgs e)
         {
             var DGArray = LoadAllDG();
@@ -78,28 +83,28 @@ namespace HotelDatabaseAssessment
 
                 }
             }
-            catch
+            catch//occurs if the column headers are selected
             {
                 
             }
         }
         private void btnAddMovie_Click(object sender, EventArgs e)
         {
-            AddMovie.ShowDialog();
+            AddMovie.ShowDialog();//shows the New Movie Form
         }
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            AddCustomer.ShowDialog();
+            AddCustomer.ShowDialog();//shows the New Customer Form
         }
         private void btnRentMovie_Click(object sender, EventArgs e)
         {
             FormRentMovie rentMovie = new FormRentMovie(GetMovieInfo());
-            rentMovie.ShowDialog();
+            rentMovie.ShowDialog();//opens the Rent Movie Form
         }
 
 
 
-        private void btnUpdateCustomer_Click(object sender, EventArgs e)
+        private void btnUpdateCustomer_Click(object sender, EventArgs e)//comments on this apply to all Update'Something'_Click Events
         {
             using (SqlCommand update = new SqlCommand(DBCalls.UpdateCustomers, Connection))
             {
@@ -118,7 +123,7 @@ namespace HotelDatabaseAssessment
                 }
                 catch
                 {
-                    MessageBox.Show(Resources.Missing_field);
+                    MessageBox.Show(Resources.Missing_field);//note that a message box is shown regardless of the operation succeeding, ensuring all DataGrids have up to date data
                 }
 
             }
@@ -171,8 +176,8 @@ namespace HotelDatabaseAssessment
         }
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)//note that these delete queries do not actually delete data in the database,
-        {                                                               //they merely make the data no longer appear in the program
-            using (SqlCommand delete = new SqlCommand(DBCalls.DeleteRecordCustomer, Connection))
+        {                                                               //they merely make the data no longer appear in this program, ensuring sales
+            using (SqlCommand delete = new SqlCommand(DBCalls.DeleteRecordCustomer, Connection))//history remains undeletable and intact
             {
                 try
                 {
@@ -286,7 +291,7 @@ namespace HotelDatabaseAssessment
             }
         }
 
-        public DataTable LoadCustomers()//public for unit test
+        public DataTable LoadCustomers()//public for unit test purposes
         {
             CustomerTable.Clear();
             if(!CustomerTable.Columns.Contains("CustID"))
@@ -356,9 +361,9 @@ namespace HotelDatabaseAssessment
         {
             return;//todo:delete this line
             DGMovies.DataSource = LoadMovies();//forces the data back into ordering by ID
-            highestMovieID = Convert.ToInt16(DGMovies.Rows[DGMovies.RowCount-1].Cells[0].Value);//requires the data to be sorted by ID in order to get the largest
+            HighestMovieID = Convert.ToInt16(DGMovies.Rows[DGMovies.RowCount-1].Cells[0].Value);//requires the data to be sorted by ID in order to get the largest
 
-            for (int i = 0; i < highestMovieID; i++)//sets the ID of the last record as the upper limit of i
+            for (int i = 0; i < HighestMovieID; i++)//sets the ID of the last record as the upper limit of i
             {
                 using (SqlCommand update = new SqlCommand(DBCalls.UpdateMoviesRentalCost, Connection))
                 {
@@ -372,7 +377,7 @@ namespace HotelDatabaseAssessment
                     //}
                     //catch
                     //{
-                    //    MessageBox.Show("It's broken :(");//should never happen
+
                     //}
                 }
             }

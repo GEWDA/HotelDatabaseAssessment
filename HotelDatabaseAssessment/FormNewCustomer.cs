@@ -25,7 +25,7 @@ namespace HotelDatabaseAssessment
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            long exceptionThrower;
+            long exceptionThrower;//used to check if the phone field is a number
             try
             {
                 exceptionThrower = Convert.ToInt64(txtPhone.Text);
@@ -34,7 +34,7 @@ namespace HotelDatabaseAssessment
             {
                 exceptionThrower = -1;
             }
-            bool filledOut = exceptionThrower!=-1;
+            bool filledOut = exceptionThrower!=-1;//filled out is used to ckeck all fields are filled in
             foreach (TextBox field in Controls.OfType<TextBox>())
             {
                 filledOut = filledOut && !string.IsNullOrEmpty(field.Text);
@@ -52,15 +52,15 @@ namespace HotelDatabaseAssessment
                     c.ExecuteNonQuery();
                     Connection.Close();
                 }
-                this.Hide();
+                Hide();
                 MessageBox.Show(Resources.Customer_Added_Successfully);
                 foreach (TextBox field in Controls.OfType<TextBox>())
                 {
-                    field.Text = null;
+                    field.Text = null;//'resets' form for next time it is called
                 }
-                this.Close();
+                Close();
             }
-            else//else is needed, because the form still exists when it is closed
+            else//if-else is needed, because the form still exists when it is closed
             {
                 MessageBox.Show(Resources.Missing_field+Resources.Customer_missing_field_part_two);
             }
