@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -367,11 +368,20 @@ namespace HotelDatabaseAssessment
                 {
                     try
                     {
-                        update.Parameters.AddWithValue("@MovieID", DGMovies.Rows[i].Cells[0].Value.ToString());//(below line) if today is at least 5 years from the year the movie came out, it is only $2 to rent (substring to prevent BADDATA in year causing problems)
-                        update.Parameters.AddWithValue("@Rental_Cost", DateTime.Today.Year - Convert.ToDateTime(@"01/01/"+DGMovies.Rows[i].Cells[3].Value.ToString().Substring(0,4)).Year >= 5? 2.00 : 5.00);
+                        string theYear = DGMovies.Rows[i].Cells[3].Value.ToString();
+                        for (int j = 0; j < 3; j++)
+                        {
+                            if (Convert.ToInt16(theYear.Length)<4)
+                            {
+                                theYear = "0" + theYear;
+                            }
+                        }
+                        update.Parameters.AddWithValue("@MovieID", DGMovies.Rows[i].Cells[0].Value.ToString());//(below line) if today is at least 5 years from the year the movie came out, it is only $2 to rent
+                        update.Parameters.AddWithValue("@Rental_Cost", DateTime.Today.Year - Convert.ToDateTime(@"01/01/"+theYear.Substring(0,4)).Year >= 5? 2.00 : 5.00);//(substring to prevent BADDATA in year (from original Database) causing problems)
                         Connection.Open();
                         update.ExecuteNonQuery();
                         Connection.Close();
+                        Thread.Sleep(1);//on my computer, the SQL would fail on record 484 due to going too fast, so I have forced a 1ms rest between updates
                     }
                     catch
                     {
