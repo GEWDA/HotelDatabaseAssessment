@@ -360,16 +360,14 @@ namespace HotelDatabaseAssessment
         private void btnUpdateFees_Click(object sender, EventArgs e)
         {
             string failureList="";
-            DGMovies.DataSource = LoadMovies();//forces the data back into ordering by ID by reloading the data
-            HighestMovieID = Convert.ToInt16(DGMovies.Rows[DGMovies.RowCount-1].Cells[0].Value);//requires the data to be sorted by ID in order to get the largest
-
-            for (int i = 0; i < HighestMovieID; i++)//sets the ID of the last record (that isn't deleted) as the upper limit of i
+            int DGLength = DGMovies.RowCount;
+            for (int i = 0; i < DGLength; i++)
             {
                 using (SqlCommand update = new SqlCommand(DBCalls.UpdateMoviesRentalCost, Connection))
                 {
                     try
                     {
-                        update.Parameters.AddWithValue("@MovieID", i);//(below line) if today is at least 5 years from the year the movie came out, it is only $2 to rent (substring to prevent BADDATA in year causing problems)
+                        update.Parameters.AddWithValue("@MovieID", DGMovies.Rows[i].Cells[0].Value.ToString());//(below line) if today is at least 5 years from the year the movie came out, it is only $2 to rent (substring to prevent BADDATA in year causing problems)
                         update.Parameters.AddWithValue("@Rental_Cost", DateTime.Today.Year - Convert.ToDateTime(@"01/01/"+DGMovies.Rows[i].Cells[3].Value.ToString().Substring(0,4)).Year >= 5? 2.00 : 5.00);
                         Connection.Open();
                         update.ExecuteNonQuery();
