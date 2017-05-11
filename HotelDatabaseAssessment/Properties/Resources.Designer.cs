@@ -140,5 +140,24 @@ namespace HotelDatabaseAssessment.Properties {
                 return ResourceManager.GetString("Please_Select_A_Record", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following Movie IDs failed to update:
+        ///.
+        /// </summary>
+        internal static string UpdateFees_Failure {
+            get {
+                return ResourceManager.GetString("UpdateFees_Failure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All fees updated successfully.
+        /// </summary>
+        internal static string UpdateFees_Successful {
+            get {
+                return ResourceManager.GetString("UpdateFees_Successful", resourceCulture);
+            }
+        }
     }
 }

@@ -141,4 +141,11 @@
   <data name="Customer_Deleted_Successfully" xml:space="preserve">
     <value>Customer Deleted Successfully</value>
   </data>
+  <data name="UpdateFees_Failure" xml:space="preserve">
+    <value>The following Movie IDs failed to update:
+</value>
+  </data>
+  <data name="UpdateFees_Successful" xml:space="preserve">
+    <value>All fees updated successfully</value>
+  </data>
 </root>

@@ -359,6 +359,7 @@ namespace HotelDatabaseAssessment
 
         private void btnUpdateFees_Click(object sender, EventArgs e)
         {
+            string failureList="";
             DGMovies.DataSource = LoadMovies();//forces the data back into ordering by ID by reloading the data
             HighestMovieID = Convert.ToInt16(DGMovies.Rows[DGMovies.RowCount-1].Cells[0].Value);//requires the data to be sorted by ID in order to get the largest
 
@@ -376,13 +377,18 @@ namespace HotelDatabaseAssessment
                     }
                     catch
                     {
-                        MessageBox.Show("Please ensure year of record number " + (i + 1) + " is a four-digit number");
+                        failureList+=((i+1).ToString()+", ");
                     }
-                    
-
                 }
             }
-            
+            if (failureList.Length>=1)
+            {
+                MessageBox.Show(Resources.UpdateFees_Failure+failureList);
+            }
+            else
+            {
+                MessageBox.Show(Resources.UpdateFees_Successful);
+            }
         }
     }
 }
