@@ -367,8 +367,8 @@ namespace HotelDatabaseAssessment
                 using (SqlCommand update = new SqlCommand(DBCalls.UpdateMoviesRentalCost, Connection))
                 {
 
-                    update.Parameters.AddWithValue("@MovieID", i);//(below line) if today is at least 5 years from the year the movie came out, it is only $2 to rent
-                    update.Parameters.AddWithValue("@Rental_Cost", DateTime.Today.Year - Convert.ToDateTime(@"01/01/"+DGMovies.Rows[i].Cells[3].Value.ToString()).Year >= 5? 2.00 : 5.00);
+                    update.Parameters.AddWithValue("@MovieID", i);//(below line) if today is at least 5 years from the year the movie came out, it is only $2 to rent (substring to prevent BADDATA in year causing problems)
+                    update.Parameters.AddWithValue("@Rental_Cost", DateTime.Today.Year - Convert.ToDateTime(@"01/01/"+DGMovies.Rows[i].Cells[3].Value.ToString().Substring(0,4)).Year >= 5? 2.00 : 5.00);
                     Connection.Open();
                     update.ExecuteNonQuery();
                     Connection.Close();
