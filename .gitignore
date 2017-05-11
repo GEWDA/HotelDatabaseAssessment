@@ -90,6 +90,10 @@ ipch/
 *.vspx
 *.sap
 
+#SQL Databases
+*.mdf
+*.ldf
+
 # TFS 2012 Local Workspace
 $tf/
 
